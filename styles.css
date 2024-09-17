@@ -1,0 +1,43 @@
+
+.header {
+    background-image: url('https://via.placeholder.com/1500x500'); /* Remplace par l'URL de ton image */
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    position: relative;
+    color: white;
+  }
+  
+  .header-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }
+  
+  .header h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+  }
+  
+  .search-bar {
+    position: relative;
+    width: 300px;
+    margin: 0 auto;
+  }
+  
+  .search-bar input {
+    width: 100%;
+    padding-right: 40px; 
+  }
+  .search-bar i.fa-solid.fa-magnifying-glass {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #6c757d; 
+    color: white;
+    padding: 8px;
+    border-radius: 10%; 
+  }

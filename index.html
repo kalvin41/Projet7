@@ -11,11 +11,11 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/4d0ccbc7aa.js" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
+    
     <title>Document</title>
 </head>
 
-<body>
+<body class="bg-secondary">
 
     <header class="header">
         <div class="header-content">
@@ -27,13 +27,13 @@
         </div>
     </header>
 
-    <main class="container mt-4">
+    <main class="container mt-4 ">
 
         <div class="row">
             <!-- Filtres -->
             <div class="col-md-2">
                 <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle " type="button" id="dropdownIngredients"
+                    <button class="btn btn-light  dropdown-toggle " type="button" id="dropdownIngredients"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Ingrédients
                     </button>
@@ -49,7 +49,7 @@
 
             <div class="col-md-2">
                 <div class="dropdown">
-                    <button class="btn btn-success dropdown-toggle" type="button" id="dropdownAppareils"
+                    <button class="btn  btn-light  dropdown-toggle" type="button" id="dropdownAppareils"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Appareils
                     </button>
@@ -65,7 +65,7 @@
 
             <div class="col-md-2">
                 <div class="dropdown">
-                    <button class="btn btn-info dropdown-toggle" type="button" id="dropdownUstensiles"
+                    <button class="btn  btn-light   dropdown-toggle" type="button" id="dropdownUstensiles"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Ustensiles
                     </button>
@@ -85,12 +85,14 @@
         </div>
 
         <section>
-            <article>
-
+            <article class="row" id="recipe-container">
+                
             </article>
         </section>
 
     </main>
+    <script src="recipes.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>

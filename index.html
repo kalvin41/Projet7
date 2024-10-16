@@ -11,7 +11,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/4d0ccbc7aa.js" crossorigin="anonymous"></script>
-    
+
     <title>Document</title>
 </head>
 
@@ -33,61 +33,54 @@
             <!-- Filtres -->
             <div class="col-md-2">
                 <div class="dropdown">
-                    <button class="btn btn-light  dropdown-toggle " type="button" id="dropdownIngredients"
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownIngredients"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Ingrédients
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownIngredients">
+                    <ul class="dropdown-menu" id="ingredientsDropdown" aria-labelledby="dropdownIngredients">
                         <li><input type="text" class="form-control search-input" id="searchIngredients"
                                 placeholder="Chercher..."></li>
-                        <li><a class="dropdown-item" href="#">Tomate</a></li>
-                        <li><a class="dropdown-item" href="#">Oignon</a></li>
-                        <li><a class="dropdown-item" href="#">Poulet</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="col-md-2">
                 <div class="dropdown">
-                    <button class="btn  btn-light  dropdown-toggle" type="button" id="dropdownAppareils"
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownAppareils"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Appareils
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownAppareils">
+                    <ul class="dropdown-menu" id="appareilsDropdown" aria-labelledby="dropdownAppareils">
                         <li><input type="text" class="form-control search-input" id="searchAppareils"
                                 placeholder="Chercher..."></li>
-                        <li><a class="dropdown-item" href="#">Four</a></li>
-                        <li><a class="dropdown-item" href="#">Mixeur</a></li>
-                        <li><a class="dropdown-item" href="#">Micro-ondes</a></li>
                     </ul>
                 </div>
             </div>
 
             <div class="col-md-2">
                 <div class="dropdown">
-                    <button class="btn  btn-light   dropdown-toggle" type="button" id="dropdownUstensiles"
+                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownUstensiles"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Ustensiles
                     </button>
-                    <ul class="dropdown-menu" aria-labelledby="dropdownUstensiles">
+                    <ul class="dropdown-menu" id="ustensilesDropdown" aria-labelledby="dropdownUstensiles">
                         <li><input type="text" class="form-control search-input" id="searchUstensiles"
                                 placeholder="Chercher..."></li>
-                        <li><a class="dropdown-item" href="#">Couteau</a></li>
-                        <li><a class="dropdown-item" href="#">Spatule</a></li>
-                        <li><a class="dropdown-item" href="#">Casserole</a></li>
                     </ul>
                 </div>
             </div>
-            <!-- Paragraphe poussé à droite -->
+
+            <!-- Nombre de recettes -->
             <div class="col">
-                 <p id="recipe-count" class="ms-auto text-end">0 recettes</p> <!-- Nombre de recettes -->
+                <p id="recipe-count" class="ms-auto text-end">0 recettes</p>
             </div>
+
+            <!-- Tags sélectionnés -->
+            <div id="selected-tags"></div>
         </div>
 
         <section>
-            <article class="row" id="recipe-container">
-                
-            </article>
+            <article class="row" id="recipe-container"></article>
         </section>
 
     </main>

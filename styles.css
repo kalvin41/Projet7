@@ -46,3 +46,8 @@
     object-fit: cover;
     width: 100%;
 }
+#selected-tags .badge {
+  font-size: 1rem;
+  padding: 0.5rem;
+  cursor: pointer;
+}

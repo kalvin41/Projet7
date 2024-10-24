@@ -1,53 +1,117 @@
-
 .header {
-    background-image: url('https://via.placeholder.com/1500x500'); /* Remplace par l'URL de ton image */
-    background-size: cover;
-    background-position: center;
-    height: 400px;
-    position: relative;
-    color: white;
-  }
-  
-  .header-content {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-  }
-  
-  .header h1 {
-    font-size: 3rem;
-    margin-bottom: 20px;
-  }
-  
-  .search-bar {
-    position: relative;
-    width: 300px;
-    margin: 0 auto;
-  }
-  
-  .search-bar input {
-    width: 100%;
-    padding-right: 40px; 
-  }
-  .search-bar i.fa-solid.fa-magnifying-glass {
-    position: absolute;
-    right: 10px;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: #6c757d; 
-    color: white;
-    padding: 8px;
-    border-radius: 10%; 
-  }
-  .card-img-top-custom {
-    max-height: 200px;
-    object-fit: cover;
-    width: 100%;
+  background-image: url('images/freepik__upload__53728.jpeg');
+  /* Remplace par l'URL de ton image */
+  background-size: cover;
+  background-position: center;
+  height: 400px;
+  position: relative;
+  color: white;
 }
+
+.header-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.header h1 {
+  font-size: 2.7rem;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #ffc107;
+}
+
+.search-icon {
+  cursor: pointer;
+  /* Change le curseur en main */
+  transition: color 0.3s;
+  /* Transition douce pour le changement de couleur */
+}
+
+.search-bar i.fa-solid.fa-magnifying-glass:hover {
+  background-color: #ffc107;
+  /* Change la couleur de l'icône au survol (ajuste selon tes préférences) */
+}
+
+
+.search-bar {
+  position: relative;
+  width: 300px;
+  margin: 0 auto;
+}
+.position-relative {
+  position: relative; /* Positionner le parent relativement pour positionner le badge par rapport à lui */
+}
+
+.time-badge {
+  position: absolute; /* Positionner le badge absolument */
+  top: 10px; /* Distance du haut */
+  right: 10px; /* Distance de la droite */
+  background-color: rgba(255, 193, 7, 0.8); /* Fond blanc avec un peu de transparence */
+  padding: 3px 6px; /* Réduction du padding autour du texte */
+  border-radius: 30px; /* Coins arrondis plus petits */
+  font-weight: bold; /* Mettre le texte en gras */
+  font-size: smaller;
+  color: #000; /* Couleur du texte (noir) */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Ombre pour le badge */
+}
+
+.search-bar input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.search-bar i.fa-solid.fa-magnifying-glass {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: black;
+  color: white;
+  padding: 8px;
+  border-radius: 10%;
+}
+
+.card-img-top-custom {
+  max-height: 200px;
+  object-fit: cover;
+  width: 100%;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.clamp-text {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  /* Nombre maximum de lignes */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+h6{
+  text-transform: uppercase;
+  font-size: smaller;
+}
+.dropdown-item:hover {
+  background-color: #ffc107;
+  /* Ou toute autre couleur de ton choix */
+}
+
+.dropdown-toggle::after {
+  margin-left: 5rem;
+  /* Ajuste la marge à gauche de la flèche */
+}
+
+.card {
+ width: 90%;
+  border-radius: 20px;
+}
+
 #selected-tags .badge {
-  font-size: 1rem;
   padding: 0.5rem;
   cursor: pointer;
+  color: black;
 }

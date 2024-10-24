@@ -19,10 +19,10 @@
 
     <header class="header">
         <div class="header-content">
-            <h1>Bienvenue sur notre site</h1>
+            <h1>Chercher parmi plus de 1500 recettes du quotidien, simples et délicieuses</h1>
             <div class="search-bar">
                 <input id="searchInput" type="text" class="form-control" placeholder="Rechercher...">
-                <i class="fa-solid fa-magnifying-glass"></i>
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
             </div>
         </div>
     </header>
@@ -33,46 +33,50 @@
             <!-- Filtres -->
             <div class="col-md-2">
                 <div class="dropdown">
-                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownIngredients"
+                    <button class="btn btn-light dropdown-toggle w-100" type="button" id="dropdownIngredients"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Ingrédients
                     </button>
-                    <ul class="dropdown-menu" id="ingredientsDropdown" aria-labelledby="dropdownIngredients">
+                    <ul class="dropdown-menu w-100" id="ingredientsDropdown" aria-labelledby="dropdownIngredients">
                         <li><input type="text" class="form-control search-input" id="searchIngredients"
-                                placeholder="Chercher..."></li>
+                                placeholder="Chercher..." /></li>
+                        <!-- Ajoute d'autres items ici -->
                     </ul>
                 </div>
             </div>
 
             <div class="col-md-2">
                 <div class="dropdown">
-                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownAppareils"
+                    <button class="btn btn-light dropdown-toggle w-100" type="button" id="dropdownAppareils"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Appareils
                     </button>
-                    <ul class="dropdown-menu" id="appareilsDropdown" aria-labelledby="dropdownAppareils">
+                    <ul class="dropdown-menu w-100" id="appareilsDropdown" aria-labelledby="dropdownAppareils">
                         <li><input type="text" class="form-control search-input" id="searchAppareils"
-                                placeholder="Chercher..."></li>
+                                placeholder="Chercher..." /></li>
+                        <!-- Ajoute d'autres items ici -->
                     </ul>
                 </div>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-md-2 mb-3">
                 <div class="dropdown">
-                    <button class="btn btn-light dropdown-toggle" type="button" id="dropdownUstensiles"
+                    <button class="btn btn-light dropdown-toggle w-100" type="button" id="dropdownUstensiles"
                         data-bs-toggle="dropdown" aria-expanded="false">
                         Ustensiles
                     </button>
-                    <ul class="dropdown-menu" id="ustensilesDropdown" aria-labelledby="dropdownUstensiles">
+                    <ul class="dropdown-menu w-100" id="ustensilesDropdown" aria-labelledby="dropdownUstensiles">
                         <li><input type="text" class="form-control search-input" id="searchUstensiles"
-                                placeholder="Chercher..."></li>
+                                placeholder="Chercher..." /></li>
+                        <!-- Ajoute d'autres items ici -->
                     </ul>
                 </div>
             </div>
 
+
             <!-- Nombre de recettes -->
             <div class="col">
-                <p id="recipe-count" class="ms-auto text-end">0 recettes</p>
+                <p id="recipe-count" class="ms-auto text-end me-5 fw-bold text-black">0 recettes</p>
             </div>
 
             <!-- Tags sélectionnés -->

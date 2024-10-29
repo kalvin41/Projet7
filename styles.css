@@ -1,13 +1,21 @@
 .header {
-  background-image: url('images/freepik__upload__53728.jpeg');
+  background-image: url('images/Mask\ group.png');
   /* Remplace par l'URL de ton image */
   background-size: cover;
   background-position: center;
-  height: 400px;
+  height: 1000px;
   position: relative;
   color: white;
 }
-
+.bg-light-medium {
+  background-color: #d3d3d3; /* Un gris intermédiaire, tu peux ajuster cette valeur */
+}
+.header img {
+  width: 10%;
+  position: absolute;
+  top: 80px;
+  left: 80px;
+}
 .header-content {
   position: absolute;
   top: 50%;
@@ -17,33 +25,33 @@
 }
 
 .header h1 {
-  font-size: 2.7rem;
-  margin-bottom: 20px;
+  width: 90%;
+  font-size: 3.5rem;
+  margin-bottom: 50px;
   text-transform: uppercase;
-  font-weight: bold;
-  color: #ffc107;
-}
+  font-family: 'Anton', sans-serif; /* Applique la police Anton */
 
+  margin-left: 60px;
+  color: #ffc107;
+  line-height: 1.3; /* Ajuste la hauteur de ligne (1.5 est un bon point de départ) */
+}
 .search-icon {
-  cursor: pointer;
-  /* Change le curseur en main */
-  transition: color 0.3s;
-  /* Transition douce pour le changement de couleur */
+  cursor: pointer; /* Change le curseur en main */
+  transition: color 0.3s; /* Transition douce pour le changement de couleur */
 }
 
 .search-bar i.fa-solid.fa-magnifying-glass:hover {
-  background-color: #ffc107;
-  /* Change la couleur de l'icône au survol (ajuste selon tes préférences) */
+  background-color: #ffc107; /* Change la couleur de l'icône au survol */
 }
-
 
 .search-bar {
   position: relative;
-  width: 300px;
-  margin: 0 auto;
+  width: 1000px; /* Largeur de la barre de recherche */
+  margin: 0 auto; /* Centrer la barre de recherche */
 }
+
 .position-relative {
-  position: relative; /* Positionner le parent relativement pour positionner le badge par rapport à lui */
+  position: relative; /* Positionner le parent relativement */
 }
 
 .time-badge {
@@ -61,19 +69,27 @@
 
 .search-bar input {
   width: 100%;
-  padding-right: 40px;
+  height: 60px; /* Ajuste la hauteur de la barre de recherche */
+  padding: 10px 40px 10px 10px; /* Ajuste le padding intérieur (haut, droite, bas, gauche) */
+  font-size: 16px; /* Ajuste la taille de la police */
+  border: 1px solid #ccc; /* Bordure de l'input */
+  border-radius: 10px; /* Coins arrondis pour l'input */
 }
 
 .search-bar i.fa-solid.fa-magnifying-glass {
   position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: black;
-  color: white;
-  padding: 8px;
-  border-radius: 10%;
+  right: 10px; /* Positionne l'icône à droite */
+  top: 50%; /* Centre l'icône verticalement */
+  transform: translateY(-50%); /* Ajuste la position verticale */
+  background-color: rgb(39, 39, 39); /* Couleur de fond de l'icône */
+  color: white; /* Couleur de l'icône */
+  padding: 8px; /* Padding autour de l'icône */
+  border-radius: 10%; /* Coins arrondis pour l'icône */
+  font-size: 24px; /* Ajuste la taille de l'icône (ajuste la valeur selon tes préférences) */
 }
+
+
+
 
 .card-img-top-custom {
   max-height: 200px;
@@ -114,4 +130,10 @@ h6{
   padding: 0.5rem;
   cursor: pointer;
   color: black;
+}
+h5{
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+.grey-l{
+  color: #9e9e9e;
 }

@@ -22,14 +22,14 @@ function displayRecipes(recipesToDisplay) {
             </div>
             <div class="card-body">
                 <h5 class="card-title">${recipe.name}</h5>
-                <h6 class="text-muted">Recette :</h6>
+                <h6 class="grey-l mt-3 mb-2">Recette </h6>
                 <p class="clamp-text">${recipe.description}</p> <!-- Ajout de la description ici -->
-                <h6 class="text-muted">Ingrédients :</h6>
+                <h6 class="grey-l mb-2">Ingrédients </h6>
 <div class="row">
     ${recipe.ingredients.map(ingredient => `
         <div class="col-6 mb-2"> <!-- Colonne pour deux ingrédients par ligne -->
             <h6>${ingredient.ingredient}</h6>
-            <small>${ingredient.quantity ? `${ingredient.quantity} ${ingredient.unit || ''}` : ''}</small>
+            <small class="grey-l">${ingredient.quantity ? `${convertToGrams(ingredient.quantity, ingredient.unit)} g` : ''}</small>
         </div>
     `).join('')}
 </div>
@@ -42,7 +42,19 @@ function displayRecipes(recipesToDisplay) {
         recipeContainer.appendChild(card);
     });
 }
+// Fonction pour convertir les unités en grammes si nécessaire
+function convertToGrams(quantity, unit) {
+    if (unit === 'grammes' || unit === 'g') {
+        return quantity; // Si l'unité est déjà en grammes, retourner la quantité
+    }
+    // Ajoute d'autres conversions ici si nécessaire
+    if (unit === 'kilogrammes' || unit === 'kg') {
+        return quantity * 1000; // Convertir les kilogrammes en grammes
+    }
+    // Ajouter d'autres conversions selon tes besoins
 
+    return quantity; // Retourner la quantité originale si aucune conversion n'est faite
+}
 // Initialisation des filtres sélectionnés
 let selectedFilters = {
     ingredients: [],
@@ -93,15 +105,39 @@ function removeTag(category, value) {
 displayTags();
 
 
-// Fonction pour filtrer les recettes en fonction des filtres sélectionnés
+// Fonction de recherche avec plusieurs mots-clés et filtres
 function filterRecipes() {
+    const searchInput = document.getElementById('searchInput').value.trim().toLowerCase();
+    const keywordArray = searchInput.split(' ').filter(keyword => keyword); // Séparer les mots-clés
+    
+    // Vérifier s'il y a des mots-clés ou des tags sélectionnés
+    const isFiltering = keywordArray.length > 0 || 
+                        selectedFilters.ingredients.length > 0 || 
+                        selectedFilters.appareils.length > 0 || 
+                        selectedFilters.ustensiles.length > 0;
+
+    // Si aucun mot-clé ou tag n'est actif, afficher toutes les recettes
+    if (!isFiltering) {
+        displayRecipes(recipes);
+        updateDropdownOptions(recipes);
+        return;
+    }
+
+    // Filtrer les recettes uniquement si des filtres sont actifs
     const filteredRecipes = recipes.filter(recipe => {
+        // Vérifier les mots-clés dans le nom, la description ou les ingrédients
+        const keywordMatch = keywordArray.every(keyword =>
+            recipe.name.toLowerCase().includes(keyword) ||
+            recipe.description.toLowerCase().includes(keyword) ||
+            recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(keyword))
+        );
+
         // Filtrer par ingrédients
         const ingredientsMatch = selectedFilters.ingredients.every(ingredient =>
             recipe.ingredients.some(item => item.ingredient.toLowerCase().includes(ingredient.toLowerCase()))
         );
 
-        // Filtrer par appareils 
+        // Filtrer par appareils
         const appareilsMatch = selectedFilters.appareils.every(appareil =>
             recipe.appliance.toLowerCase().includes(appareil.toLowerCase())
         );
@@ -111,13 +147,14 @@ function filterRecipes() {
             recipe.ustensils.some(item => item.toLowerCase().includes(ustensile.toLowerCase()))
         );
 
-        return ingredientsMatch && appareilsMatch && ustensilesMatch;
+        return keywordMatch && ingredientsMatch && appareilsMatch && ustensilesMatch;
     });
 
     displayRecipes(filteredRecipes); // Afficher les recettes filtrées
-    // Mettre à jour les options dans les dropdowns en fonction des recettes filtrées
-    updateDropdownOptions(filteredRecipes);
+    updateDropdownOptions(filteredRecipes); // Mettre à jour les options dans les dropdowns
 }
+
+
 // Fonction pour mettre à jour les options dans les dropdowns selon les recettes filtrées
 function updateDropdownOptions(filteredRecipes) {
     const ingredientsDropdown = document.getElementById('ingredientsDropdown');
@@ -170,8 +207,6 @@ function updateDropdownOptions(filteredRecipes) {
     });
 }
 
-// Appeler la fonction pour remplir les dropdowns lors du chargement de la page
-populateDropdowns();
 // Extraire et afficher les options dans les dropdowns
 function populateDropdowns() {
     const ingredientsDropdown = document.getElementById('ingredientsDropdown');
@@ -219,31 +254,9 @@ function populateDropdowns() {
 // Appeler la fonction pour remplir les dropdowns lors du chargement de la page
 populateDropdowns();
 
-// Fonction de recherche avec plusieurs mots-clés
-function searchRecipes(keywords) {
-    const keywordArray = keywords.toLowerCase().split(' '); // Séparer les mots-clés
+// Appeler la fonction pour remplir les dropdowns lors du chargement de la page
+populateDropdowns();
+displayRecipes(recipes); // Afficher toutes les recettes au chargement de la page
 
-    // Filtrer les recettes par mots-clés dans le nom, description ou ingrédients
-    const filteredRecipes = recipes.filter(recipe => {
-        return keywordArray.every(keyword =>
-            recipe.name.toLowerCase().includes(keyword) ||
-            recipe.description.toLowerCase().includes(keyword) ||
-            recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(keyword))
-        );
-    });
-
-    displayRecipes(filteredRecipes); // Afficher les recettes filtrées
-}
-
-// Écouteur sur la barre de recherche
-document.getElementById('searchInput').addEventListener('input', function () {
-    const keywords = this.value.trim();
-    if (keywords.length > 0) {
-        searchRecipes(keywords);
-    } else {
-        displayRecipes(recipes); // Afficher toutes les recettes si l'input est vide
-    }
-});
-
-// Afficher toutes les recettes au chargement de la page
-displayRecipes(recipes);
+// Écouteur sur la barre de recherche pour filtrer les recettes en tenant compte des mots-clés et des tags sélectionnés
+document.getElementById('searchInput').addEventListener('input', filterRecipes);

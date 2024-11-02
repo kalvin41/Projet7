@@ -20,12 +20,12 @@ function displayRecipes(recipesToDisplay) {
                 <img src="images/${recipe.image}" class="card-img-top card-img-top-custom" alt="${recipe.name}">
                 <div class="time-badge"> ${recipe.time} min </div> <!-- Affichage du temps de cuisson -->
             </div>
-            <div class="card-body">
-                <h5 class="card-title">${recipe.name}</h5>
+            <div class="card-body ms-3 me-3">
+                <h5 class="card-title mt-3">${recipe.name}</h5>
                 <h6 class="grey-l mt-3 mb-2">Recette </h6>
                 <p class="clamp-text">${recipe.description}</p> <!-- Ajout de la description ici -->
-                <h6 class="grey-l mb-2">Ingrédients </h6>
-<div class="row">
+                <h6 class="grey-l mb-2 lin">Ingrédients </h6>
+<div class="row mt-5">
     ${recipe.ingredients.map(ingredient => `
         <div class="col-6 mb-2"> <!-- Colonne pour deux ingrédients par ligne -->
             <h6>${ingredient.ingredient}</h6>

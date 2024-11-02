@@ -10,6 +10,12 @@
 .bg-light-medium {
   background-color: #d3d3d3; /* Un gris intermédiaire, tu peux ajuster cette valeur */
 }
+.dropdown{
+  width:70%;
+}
+button{
+  height: 50px;
+}
 .header img {
   width: 10%;
   position: absolute;
@@ -89,14 +95,22 @@
 }
 
 
-
+.card.h-100 {
+  min-height: 950px; /* Ajuste cette valeur selon la hauteur souhaitée */
+}
+.lin{
+  margin-top: 40px;
+}
 
 .card-img-top-custom {
-  max-height: 200px;
+  max-height: 380px;
   object-fit: cover;
   width: 100%;
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
+}
+h5{
+  font-size: 30px;
 }
 
 .clamp-text {
@@ -111,6 +125,7 @@ h6{
   text-transform: uppercase;
   font-size: smaller;
 }
+
 .dropdown-item:hover {
   background-color: #ffc107;
   /* Ou toute autre couleur de ton choix */
@@ -124,6 +139,7 @@ h6{
 .card {
  width: 90%;
   border-radius: 20px;
+  font-size: 20px;
 }
 
 #selected-tags .badge {

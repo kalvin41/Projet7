@@ -105,49 +105,51 @@ function removeTag(category, value) {
 displayTags();
 
 
+
 // Fonction de recherche avec plusieurs mots-clés et filtres
 function filterRecipes() {
     const searchInput = document.getElementById('searchInput').value.trim().toLowerCase();
-    const keywordArray = searchInput.split(' ').filter(keyword => keyword); // Séparer les mots-clés
-    
-    // Vérifier s'il y a des mots-clés ou des tags sélectionnés
-    const isFiltering = keywordArray.length > 0 || 
-                        selectedFilters.ingredients.length > 0 || 
-                        selectedFilters.appareils.length > 0 || 
-                        selectedFilters.ustensiles.length > 0;
+    const keywordArray = new Set(searchInput.split(' ').filter(keyword => keyword)); // Convertir en Set pour éviter les doublons
 
     // Si aucun mot-clé ou tag n'est actif, afficher toutes les recettes
-    if (!isFiltering) {
+    if (keywordArray.size === 0 && !Object.values(selectedFilters).some(filter => filter.length > 0)) {
         displayRecipes(recipes);
         updateDropdownOptions(recipes);
         return;
     }
 
-    // Filtrer les recettes uniquement si des filtres sont actifs
+    // Filtrage des recettes avec mots-clés et tags
     const filteredRecipes = recipes.filter(recipe => {
-        // Vérifier les mots-clés dans le nom, la description ou les ingrédients
-        const keywordMatch = keywordArray.every(keyword =>
-            recipe.name.toLowerCase().includes(keyword) ||
-            recipe.description.toLowerCase().includes(keyword) ||
-            recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(keyword))
-        );
+        // Utiliser un drapeau pour vérifier si la recette correspond
+        let matchesSearch = true;
+        
+        // Vérification des mots-clés
+        if (keywordArray.size > 0) {
+            matchesSearch = [...keywordArray].every(keyword =>
+                recipe.name.toLowerCase().includes(keyword) ||
+                recipe.description.toLowerCase().includes(keyword) ||
+                recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(keyword))
+            );
+        }
 
-        // Filtrer par ingrédients
-        const ingredientsMatch = selectedFilters.ingredients.every(ingredient =>
-            recipe.ingredients.some(item => item.ingredient.toLowerCase().includes(ingredient.toLowerCase()))
-        );
+        // Vérification des tags de filtres
+        const matchesIngredients = selectedFilters.ingredients.length === 0 || 
+            selectedFilters.ingredients.every(tag =>
+                recipe.ingredients.some(item => item.ingredient.toLowerCase().includes(tag.toLowerCase()))
+            );
 
-        // Filtrer par appareils
-        const appareilsMatch = selectedFilters.appareils.every(appareil =>
-            recipe.appliance.toLowerCase().includes(appareil.toLowerCase())
-        );
+        const matchesAppareils = selectedFilters.appareils.length === 0 || 
+            selectedFilters.appareils.every(tag =>
+                recipe.appliance.toLowerCase().includes(tag.toLowerCase())
+            );
 
-        // Filtrer par ustensiles
-        const ustensilesMatch = selectedFilters.ustensiles.every(ustensile =>
-            recipe.ustensils.some(item => item.toLowerCase().includes(ustensile.toLowerCase()))
-        );
+        const matchesUstensiles = selectedFilters.ustensiles.length === 0 || 
+            selectedFilters.ustensiles.every(tag =>
+                recipe.ustensils.some(item => item.toLowerCase().includes(tag.toLowerCase()))
+            );
 
-        return keywordMatch && ingredientsMatch && appareilsMatch && ustensilesMatch;
+        // La recette correspond si elle satisfait à tous les critères
+        return matchesSearch && matchesIngredients && matchesAppareils && matchesUstensiles;
     });
 
     displayRecipes(filteredRecipes); // Afficher les recettes filtrées

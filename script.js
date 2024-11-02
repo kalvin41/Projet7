@@ -126,26 +126,66 @@ function filterRecipes() {
     // Filtrer les recettes uniquement si des filtres sont actifs
     const filteredRecipes = recipes.filter(recipe => {
         // Vérifier les mots-clés dans le nom, la description ou les ingrédients
-        const keywordMatch = keywordArray.every(keyword =>
-            recipe.name.toLowerCase().includes(keyword) ||
-            recipe.description.toLowerCase().includes(keyword) ||
-            recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(keyword))
-        );
+        let keywordMatch = true;
+        for (let i = 0; i < keywordArray.length; i++) {
+            const keyword = keywordArray[i];
+            const keywordInName = recipe.name.toLowerCase().includes(keyword);
+            const keywordInDescription = recipe.description.toLowerCase().includes(keyword);
+            const keywordInIngredients = recipe.ingredients.some(ingredient => ingredient.ingredient.toLowerCase().includes(keyword));
+
+            if (!keywordInName && !keywordInDescription && !keywordInIngredients) {
+                keywordMatch = false;
+                break;
+            }
+        }
 
         // Filtrer par ingrédients
-        const ingredientsMatch = selectedFilters.ingredients.every(ingredient =>
-            recipe.ingredients.some(item => item.ingredient.toLowerCase().includes(ingredient.toLowerCase()))
-        );
+        let ingredientsMatch = true;
+        for (let i = 0; i < selectedFilters.ingredients.length; i++) {
+            const ingredientFilter = selectedFilters.ingredients[i];
+            let foundIngredient = false;
+
+            for (let j = 0; j < recipe.ingredients.length; j++) {
+                if (recipe.ingredients[j].ingredient.toLowerCase().includes(ingredientFilter.toLowerCase())) {
+                    foundIngredient = true;
+                    break;
+                }
+            }
+
+            if (!foundIngredient) {
+                ingredientsMatch = false;
+                break;
+            }
+        }
 
         // Filtrer par appareils
-        const appareilsMatch = selectedFilters.appareils.every(appareil =>
-            recipe.appliance.toLowerCase().includes(appareil.toLowerCase())
-        );
+        let appareilsMatch = true;
+        for (let i = 0; i < selectedFilters.appareils.length; i++) {
+            const appareilFilter = selectedFilters.appareils[i];
+            if (!recipe.appliance.toLowerCase().includes(appareilFilter.toLowerCase())) {
+                appareilsMatch = false;
+                break;
+            }
+        }
 
         // Filtrer par ustensiles
-        const ustensilesMatch = selectedFilters.ustensiles.every(ustensile =>
-            recipe.ustensils.some(item => item.toLowerCase().includes(ustensile.toLowerCase()))
-        );
+        let ustensilesMatch = true;
+        for (let i = 0; i < selectedFilters.ustensiles.length; i++) {
+            const ustensileFilter = selectedFilters.ustensiles[i];
+            let foundUstensile = false;
+
+            for (let j = 0; j < recipe.ustensils.length; j++) {
+                if (recipe.ustensils[j].toLowerCase().includes(ustensileFilter.toLowerCase())) {
+                    foundUstensile = true;
+                    break;
+                }
+            }
+
+            if (!foundUstensile) {
+                ustensilesMatch = false;
+                break;
+            }
+        }
 
         return keywordMatch && ingredientsMatch && appareilsMatch && ustensilesMatch;
     });
